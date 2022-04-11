@@ -4,7 +4,6 @@ COPY . .
 RUN make install && \
     make build
 
-FROM gcr.io/distroless/base-debian11
+FROM scratch
 COPY --from=builder /usr/src/runner/target/release/runner /usr/local/bin/runner
-USER nonroot:nonroot
 ENTRYPOINT ["runner"]
